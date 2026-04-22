@@ -1,0 +1,39 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+
+  {{/* No-flash dark mode: runs synchronously before any paint. */}}
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  {{/* Tailwind runs once per build; templates.Defer ensures hugo_stats.json
+       is up to date before css.TailwindCSS reads it. */}}
+  {{ with (templates.Defer (dict "key" "global")) }}
+    {{ with resources.Get "css/main.css" }}
+      {{ $opts := dict "minify" hugo.IsProduction }}
+      {{ with . | css.TailwindCSS $opts }}
+        {{ if hugo.IsProduction }}
+          {{ with . | fingerprint }}
+            <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+          {{ end }}
+        {{ else }}
+          <link rel="stylesheet" href="{{ .RelPermalink }}">
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ range .AlternativeOutputFormats }}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+  {{ end }}
+</head>

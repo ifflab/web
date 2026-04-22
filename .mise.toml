@@ -1,0 +1,10 @@
+# Pinned toolchain for this repo. Run `mise install` after cloning.
+# See https://mise.jdx.dev for install instructions.
+#
+# Hugo non-extended is sufficient here — the pipeline uses css.TailwindCSS
+# (external CLI subprocess) and fingerprinting, neither of which require the
+# extended build. Switch to extended (e.g. via the asdf-hugo plugin with
+# `hugo = "extended_0.143.1"`) if you later add SCSS or webp image processing.
+[tools]
+hugo = "0.143.1"
+"github:tailwindlabs/tailwindcss" = { version = "4.2.4", matching = "tailwindcss-linux-x64" }  # Standalone Tailwind v4 CLI; matching excludes the -musl variant

@@ -1,0 +1,20 @@
+{{/* Expects a Page context (.). Renders a news-list card. */}}
+<li>
+  <a href="{{ .RelPermalink }}"
+     class="block h-full rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-brand-500 dark:hover:border-brand-500">
+    {{ with .Params.cover }}
+      {{ with $.Resources.GetMatch . }}
+        <img src="{{ .RelPermalink }}" alt="" class="w-full aspect-video object-cover">
+      {{ end }}
+    {{ end }}
+    <div class="p-4">
+      <p class="text-xs text-slate-500">{{ .Date.Format "Jan 2, 2006" }}</p>
+      <h3 class="mt-1 text-base font-semibold text-slate-900 dark:text-slate-100 leading-snug">
+        {{ .Title }}
+      </h3>
+      {{ with .Params.summary }}
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{{ . }}</p>
+      {{ end }}
+    </div>
+  </a>
+</li>

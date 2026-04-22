@@ -1,0 +1,13 @@
+# Hugo build output
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# mise local overrides
+.mise.local.toml
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

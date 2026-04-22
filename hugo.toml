@@ -1,0 +1,82 @@
+baseURL      = "https://ifflab.xyz/"
+languageCode = "en-gb"
+title        = "ifflab"
+# No `theme` key: all templates live in ./layouts.
+
+enableRobotsTXT = true
+enableGitInfo   = true             # uses commit timestamps for lastmod
+buildDrafts     = false
+buildFuture     = false
+summaryLength   = 40               # words in auto-summaries if `summary` frontmatter is absent
+
+[markup.goldmark.renderer]
+unsafe = true                      # allow raw HTML in markdown (for the occasional <figure> etc.)
+
+[markup.tableOfContents]
+startLevel = 2
+endLevel   = 3
+
+[pagination]
+pagerSize = 12                     # news list page size
+
+[permalinks]
+news         = "/news/:slug/"
+research     = "/research/:slug/"
+people       = "/people/:slug/"
+
+[menus]
+[[menus.main]]
+name   = "News"
+url    = "/news/"
+weight = 10
+[[menus.main]]
+name   = "Research"
+url    = "/research/"
+weight = 20
+[[menus.main]]
+name   = "People"
+url    = "/people/"
+weight = 30
+[[menus.main]]
+name   = "Publications"
+url    = "/publications/"
+weight = 40
+[[menus.main]]
+name   = "Contact"
+url    = "/contact/"
+weight = 50
+
+[params]
+description = "Research group at [institution]. We work on [short topic description]."
+email       = "contact@ifflab.xyz"
+
+  [params.social]
+  github  = "ifflab"
+  # twitter = "ifflab"
+  # bluesky = "ifflab.bsky.social"
+
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+
+# --- Tailwind v4 integration (canonical pattern from Hugo docs) ---
+# Hugo writes class usage to hugo_stats.json, which Tailwind reads via @source.
+[build]
+  [build.buildStats]
+  enable = true
+
+  [[build.cachebusters]]
+  source = 'assets/notwatching/hugo_stats\.json'
+  target = 'css'
+  [[build.cachebusters]]
+  source = '(postcss|tailwind)\.config\.js'
+  target = 'css'
+
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+
+[[module.mounts]]
+disableWatch = true
+source = 'hugo_stats.json'
+target = 'assets/notwatching/hugo_stats.json'
