@@ -1,0 +1,51 @@
+{{ define "main" }}
+<section class="max-w-4xl mx-auto px-6 py-10 md:py-16">
+  <header class="mb-10">
+    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+      Publications
+    </h1>
+    {{ with .Content }}
+      <div class="prose-like mt-4 max-w-2xl">{{ . }}</div>
+    {{ end }}
+  </header>
+
+  {{ $all := sort (default slice site.Data.publications) "year" "desc" }}
+
+  {{/* Collect unique years preserving the descending order from $all. */}}
+  {{ $years := slice }}
+  {{ range $all }}
+    {{ if not (in $years .year) }}
+      {{ $years = $years | append .year }}
+    {{ end }}
+  {{ end }}
+
+  {{ if $all }}
+    {{ range $years }}
+      {{ $year := . }}
+      <section class="mt-10 first:mt-0">
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100 pb-2 mb-4 border-b border-slate-200 dark:border-slate-800">
+          {{ $year }}
+        </h2>
+        <ol class="space-y-5">
+          {{ range where $all "year" $year }}
+            <li class="text-slate-700 dark:text-slate-300">
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ .title }}</p>
+              {{ with .authors }}<p class="text-sm mt-0.5">{{ . }}</p>{{ end }}
+              {{ with .venue }}<p class="text-sm italic text-slate-600 dark:text-slate-400 mt-0.5">{{ . }}</p>{{ end }}
+              <p class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                {{ with .doi   }}<a href="https://doi.org/{{ . }}"         class="text-brand-700 dark:text-brand-500 hover:underline">DOI</a>{{ end }}
+                {{ with .arxiv }}<a href="https://arxiv.org/abs/{{ . }}"   class="text-brand-700 dark:text-brand-500 hover:underline">arXiv</a>{{ end }}
+                {{ with .pdf   }}<a href="{{ . }}"                         class="text-brand-700 dark:text-brand-500 hover:underline">PDF</a>{{ end }}
+                {{ with .code  }}<a href="{{ . }}"                         class="text-brand-700 dark:text-brand-500 hover:underline">Code</a>{{ end }}
+                {{ with .url   }}<a href="{{ . }}"                         class="text-brand-700 dark:text-brand-500 hover:underline">Link</a>{{ end }}
+              </p>
+            </li>
+          {{ end }}
+        </ol>
+      </section>
+    {{ end }}
+  {{ else }}
+    <p class="text-slate-500">No publications yet. Add entries to <code>data/publications.yaml</code>.</p>
+  {{ end }}
+</section>
+{{ end }}

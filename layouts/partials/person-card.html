@@ -1,0 +1,23 @@
+{{/* Expects a Page context (.). Renders a people-grid card. */}}
+<li>
+  <a href="{{ .RelPermalink }}"
+     class="flex gap-4 items-start rounded-lg border border-slate-200 dark:border-slate-800 p-4 hover:border-brand-500 dark:hover:border-brand-500">
+    <div class="shrink-0 w-16 h-16 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+      {{ with .Params.photo }}
+        {{ with $.Resources.GetMatch . }}
+          <img src="{{ (.Fill "128x128 Center").RelPermalink }}" alt="" class="w-full h-full object-cover">
+        {{ end }}
+      {{ else }}
+        <svg viewBox="0 0 24 24" class="w-8 h-8" fill="currentColor" aria-hidden="true">
+          <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.34 0-10 1.67-10 5v3h20v-3c0-3.33-6.66-5-10-5z"/>
+        </svg>
+      {{ end }}
+    </div>
+    <div class="min-w-0">
+      <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100 leading-snug">{{ .Title }}</h3>
+      {{ with .Params.role }}
+        <p class="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{{ . }}</p>
+      {{ end }}
+    </div>
+  </a>
+</li>

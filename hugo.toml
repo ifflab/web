@@ -19,11 +19,6 @@ endLevel   = 3
 [pagination]
 pagerSize = 12                     # news list page size
 
-[permalinks]
-news         = "/news/:slug/"
-research     = "/research/:slug/"
-people       = "/people/:slug/"
-
 [menus]
 [[menus.main]]
 name   = "News"

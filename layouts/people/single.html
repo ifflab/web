@@ -1,0 +1,47 @@
+{{ define "main" }}
+<article class="max-w-3xl mx-auto px-6 py-10 md:py-16">
+  <header class="flex flex-col sm:flex-row gap-6 items-start mb-10">
+    <div class="shrink-0 w-32 h-32 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+      {{ with .Params.photo }}
+        {{ with $.Resources.GetMatch . }}
+          <img src="{{ (.Fill "256x256 Center").RelPermalink }}" alt="" class="w-full h-full object-cover">
+        {{ end }}
+      {{ else }}
+        <svg viewBox="0 0 24 24" class="w-16 h-16" fill="currentColor" aria-hidden="true">
+          <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.34 0-10 1.67-10 5v3h20v-3c0-3.33-6.66-5-10-5z"/>
+        </svg>
+      {{ end }}
+    </div>
+    <div>
+      <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+        {{ .Title }}
+      </h1>
+      {{ with .Params.role }}
+        <p class="mt-2 text-lg text-slate-600 dark:text-slate-400">{{ . }}</p>
+      {{ end }}
+      <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+        {{ with .Params.email }}
+          <dt class="text-slate-500">Email</dt>
+          <dd><a href="mailto:{{ . }}" class="text-brand-700 dark:text-brand-500 hover:underline">{{ . }}</a></dd>
+        {{ end }}
+        {{ with .Params.orcid }}
+          <dt class="text-slate-500">ORCID</dt>
+          <dd><a href="https://orcid.org/{{ . }}" class="text-brand-700 dark:text-brand-500 hover:underline">{{ . }}</a></dd>
+        {{ end }}
+        {{ with .Params.website }}
+          <dt class="text-slate-500">Website</dt>
+          <dd><a href="{{ . }}" class="text-brand-700 dark:text-brand-500 hover:underline">{{ . }}</a></dd>
+        {{ end }}
+      </dl>
+    </div>
+  </header>
+
+  <div class="prose-like">
+    {{ .Content }}
+  </div>
+
+  <p class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 text-sm">
+    <a href="/people/" class="text-brand-700 dark:text-brand-500 hover:underline">← All people</a>
+  </p>
+</article>
+{{ end }}

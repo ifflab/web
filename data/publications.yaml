@@ -1,0 +1,24 @@
+# Lab publications, newest first within each year.
+# To add a new paper, append a block to the top of this list.
+# Fields: title (required), authors, venue, year (required),
+# doi, arxiv, pdf, code, url  -- all optional.
+
+- title: "Example paper title, replace with a real one"
+  authors: "A. Student, B. Postdoc, C. Principal Investigator"
+  venue: "Journal of Example Science"
+  year: 2026
+  doi: "10.1000/example"
+  arxiv: "2604.00001"
+
+- title: "Another example paper from last year"
+  authors: "D. Collaborator, C. Principal Investigator"
+  venue: "Proceedings of Something"
+  year: 2025
+  arxiv: "2503.12345"
+  code: "https://github.com/ifflab/example"
+
+- title: "An older example paper"
+  authors: "C. Principal Investigator, E. Mentor"
+  venue: "Physical Review X"
+  year: 2024
+  doi: "10.1103/PhysRevX.0.000000"

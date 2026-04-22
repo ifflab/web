@@ -1,0 +1,35 @@
+{{ define "main" }}
+<section class="max-w-5xl mx-auto px-6 py-10 md:py-16">
+  <header class="mb-10">
+    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+      News
+    </h1>
+    {{ with .Content }}
+      <div class="prose-like mt-4 max-w-2xl">{{ . }}</div>
+    {{ end }}
+  </header>
+
+  {{ $pages := .Paginate (.RegularPages.ByDate.Reverse) }}
+  {{ if $pages.Pages }}
+    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {{ range $pages.Pages }}
+        {{ partial "news-card.html" . }}
+      {{ end }}
+    </ul>
+
+    {{ if gt $pages.TotalPages 1 }}
+      <nav class="mt-10 flex items-center justify-between text-sm">
+        {{ with $pages.Prev }}
+          <a href="{{ .URL }}" class="text-brand-700 dark:text-brand-500 hover:underline">← Newer</a>
+        {{ else }}<span></span>{{ end }}
+        <span class="text-slate-500">Page {{ $pages.PageNumber }} of {{ $pages.TotalPages }}</span>
+        {{ with $pages.Next }}
+          <a href="{{ .URL }}" class="text-brand-700 dark:text-brand-500 hover:underline">Older →</a>
+        {{ else }}<span></span>{{ end }}
+      </nav>
+    {{ end }}
+  {{ else }}
+    <p class="text-slate-500">No posts yet.</p>
+  {{ end }}
+</section>
+{{ end }}
