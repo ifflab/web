@@ -2,5 +2,5 @@
 title: "Publications"
 ---
 
-Peer-reviewed papers, preprints, and notable proceedings. Edit
-`data/publications.yaml` to add or update entries.
+Peer-reviewed papers, preprints, and notable proceedings. Entries are
+maintained in `data/publications.yaml`.
