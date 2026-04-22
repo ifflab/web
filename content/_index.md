@@ -1,5 +1,5 @@
 ---
-title: "ifflab"
+title: "Intelligent Force Fields Lab"
 description: "Research group at [institution]. We study [topic]."
 ---
 

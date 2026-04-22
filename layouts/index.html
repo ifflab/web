@@ -1,12 +1,12 @@
 {{ define "main" }}
 
-{{/* Hero */}}
+{{/* Hero — reads from content/_index.md frontmatter + body */}}
 <section class="border-b border-slate-200 dark:border-slate-800">
   <div class="max-w-5xl mx-auto px-6 py-16 md:py-24">
     <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      {{ site.Title }}
+      {{ .Title }}
     </h1>
-    {{ with site.Params.description }}
+    {{ with (or .Description site.Params.description) }}
       <p class="mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-400">{{ . }}</p>
     {{ end }}
     {{ with .Content }}
