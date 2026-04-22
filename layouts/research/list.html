@@ -1,29 +1,41 @@
 {{ define "main" }}
-<section class="max-w-5xl mx-auto px-6 py-10 md:py-16">
-  <header class="mb-10">
-    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      Research
-    </h1>
-    {{ with .Content }}
-      <div class="prose-like mt-4 max-w-2xl">{{ . }}</div>
-    {{ end }}
+<section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
+  <header class="grid grid-cols-12 gap-6 mb-12 md:mb-16">
+    <div class="col-span-12 md:col-span-3">
+      <p class="caption">§ Research</p>
+    </div>
+    <div class="col-span-12 md:col-span-9">
+      <h1 class="font-display font-normal text-4xl md:text-5xl tracking-[-0.022em] text-slate-900 dark:text-slate-100">
+        Lines of work
+      </h1>
+      {{ with .Content }}
+        <div class="prose-like mt-6 max-w-[42rem]">{{ . }}</div>
+      {{ end }}
+    </div>
   </header>
 
-  <ul class="grid gap-5 md:grid-cols-2">
-    {{ range .RegularPages.ByWeight }}
-      <li>
-        <a href="{{ .RelPermalink }}"
-           class="block h-full rounded-lg border border-slate-200 dark:border-slate-800 p-6 hover:border-brand-500 dark:hover:border-brand-500">
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h2>
-          {{ with .Summary }}
-            <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">{{ . | plainify | truncate 240 }}</p>
-          {{ end }}
-          <p class="mt-4 text-sm text-brand-700 dark:text-brand-500">Read more →</p>
+  <ol class="border-t hairline">
+    {{ range $i, $p := .RegularPages.ByWeight }}
+      <li class="border-b hairline">
+        <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-4 py-8 md:py-10 group items-baseline">
+          <span class="col-span-2 md:col-span-1 font-mono text-[0.78rem] text-slate-400">
+            {{ printf "%02d" (add $i 1) }}
+          </span>
+          <div class="col-span-10 md:col-span-11">
+            <h2 class="font-display text-2xl md:text-3xl tracking-[-0.02em] leading-[1.1] text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+              {{ .Title }}
+            </h2>
+            {{ with .Summary }}
+              <p class="mt-3 text-[1.0625rem] leading-[1.65] text-slate-600 dark:text-slate-400 max-w-[48rem]">
+                {{ . | plainify | truncate 280 }}
+              </p>
+            {{ end }}
+          </div>
         </a>
       </li>
     {{ else }}
-      <li class="text-slate-500">No research topics added yet.</li>
+      <li class="py-6 text-slate-500">No research topics added yet.</li>
     {{ end }}
-  </ul>
+  </ol>
 </section>
 {{ end }}

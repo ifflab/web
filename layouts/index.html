@@ -1,61 +1,92 @@
 {{ define "main" }}
 
-{{/* Hero — reads from content/_index.md frontmatter + body */}}
-<section class="border-b border-slate-200 dark:border-slate-800">
-  <div class="max-w-5xl mx-auto px-6 py-16 md:py-24">
-    <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      {{ .Title }}
-    </h1>
-    {{ with (or .Description site.Params.description) }}
-      <p class="mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-400">{{ . }}</p>
-    {{ end }}
+{{/* ============ HERO ============
+     Asymmetric: mono meta + massive serif H1 on left cols, description on right. */}}
+<section>
+  <div class="max-w-[72rem] mx-auto px-6 pt-16 md:pt-24 pb-16 md:pb-28">
+    <p class="caption">§ iFFLab · {{ now.Format "2006" }} · Research group</p>
+    <div class="mt-6 grid grid-cols-12 gap-6">
+      <h1 class="col-span-12 md:col-span-9 font-display font-normal
+                 text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-[-0.025em]
+                 text-slate-900 dark:text-slate-100">
+        {{ .Title }}
+      </h1>
+      <div class="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-5 lg:col-start-8 mt-2 md:mt-4">
+        {{ with (or .Description site.Params.description) }}
+          <p class="text-[1.0625rem] leading-[1.6] text-slate-600 dark:text-slate-400">{{ . }}</p>
+        {{ end }}
+      </div>
+    </div>
     {{ with .Content }}
-      <div class="prose-like mt-6 max-w-2xl">{{ . }}</div>
+      <div class="prose-like max-w-[48rem] mt-12">{{ . }}</div>
     {{ end }}
   </div>
 </section>
 
-{{/* Recent news */}}
-{{ $news := where site.RegularPages "Section" "news" | first 3 }}
-{{ if $news }}
-<section class="max-w-5xl mx-auto px-6 py-12 md:py-16">
-  <div class="flex items-end justify-between mb-6">
-    <h2 class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      Recent news
-    </h2>
-    <a href="/news/" class="text-sm text-brand-700 dark:text-brand-500 hover:underline">All news →</a>
+{{/* ============ RESEARCH ============ */}}
+{{ $research := where site.RegularPages "Section" "research" }}
+{{ if $research }}
+<section class="border-t hairline">
+  <div class="max-w-[72rem] mx-auto px-6 py-16 md:py-24 grid grid-cols-12 gap-6">
+    <div class="col-span-12 md:col-span-3">
+      <p class="caption">§ 01 — Research</p>
+      <h2 class="mt-4 font-display font-normal text-3xl md:text-4xl tracking-tight text-slate-900 dark:text-slate-100">
+        Lines of work
+      </h2>
+      <a href="/research/"
+         class="inline-block mt-6 font-mono text-[0.78rem] uppercase tracking-[0.12em]
+                text-brand-600 dark:text-brand-400 hover:underline underline-offset-4">
+        See all →
+      </a>
+    </div>
+    <ol class="col-span-12 md:col-span-9 space-y-10">
+      {{ range $i, $p := $research }}
+        <li class="grid grid-cols-12 gap-4 items-baseline pb-10 border-b hairline last:border-0 last:pb-0">
+          <span class="col-span-1 font-mono text-[0.78rem] text-slate-400">
+            {{ printf "%02d" (add $i 1) }}
+          </span>
+          <div class="col-span-11">
+            <h3 class="font-display font-normal text-2xl md:text-3xl tracking-tight text-slate-900 dark:text-slate-100">
+              <a href="{{ .RelPermalink }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                {{ .Title }}
+              </a>
+            </h3>
+            {{ with .Summary }}
+              <p class="mt-3 text-[1.0625rem] leading-[1.65] text-slate-600 dark:text-slate-400 max-w-2xl">
+                {{ . | plainify | truncate 240 }}
+              </p>
+            {{ end }}
+          </div>
+        </li>
+      {{ end }}
+    </ol>
   </div>
-  <ul class="grid gap-4 md:grid-cols-3">
-    {{ range $news }}
-      {{ partial "news-card.html" . }}
-    {{ end }}
-  </ul>
 </section>
 {{ end }}
 
-{{/* Research lines */}}
-{{ $research := where site.RegularPages "Section" "research" }}
-{{ if $research }}
-<section class="max-w-5xl mx-auto px-6 py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">
-  <div class="flex items-end justify-between mb-6">
-    <h2 class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      Research
-    </h2>
-    <a href="/research/" class="text-sm text-brand-700 dark:text-brand-500 hover:underline">See all →</a>
+{{/* ============ NEWS ============
+     Chronological list. Date in mono-small left, headline centre, summary right. */}}
+{{ $news := where site.RegularPages "Section" "news" | first 5 }}
+{{ if $news }}
+<section class="border-t hairline">
+  <div class="max-w-[72rem] mx-auto px-6 py-16 md:py-24 grid grid-cols-12 gap-6">
+    <div class="col-span-12 md:col-span-3">
+      <p class="caption">§ 02 — News</p>
+      <h2 class="mt-4 font-display font-normal text-3xl md:text-4xl tracking-tight text-slate-900 dark:text-slate-100">
+        Recent
+      </h2>
+      <a href="/news/"
+         class="inline-block mt-6 font-mono text-[0.78rem] uppercase tracking-[0.12em]
+                text-brand-600 dark:text-brand-400 hover:underline underline-offset-4">
+        All news →
+      </a>
+    </div>
+    <ul class="col-span-12 md:col-span-9 border-t hairline">
+      {{ range $news }}
+        {{ partial "news-card.html" . }}
+      {{ end }}
+    </ul>
   </div>
-  <ul class="grid gap-4 md:grid-cols-2">
-    {{ range $research }}
-      <li>
-        <a href="{{ .RelPermalink }}"
-           class="block h-full rounded-lg border border-slate-200 dark:border-slate-800 p-5 hover:border-brand-500 dark:hover:border-brand-500">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h3>
-          {{ with .Summary }}
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{{ . | plainify | truncate 160 }}</p>
-          {{ end }}
-        </a>
-      </li>
-    {{ end }}
-  </ul>
 </section>
 {{ end }}
 

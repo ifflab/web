@@ -1,18 +1,27 @@
 {{ define "main" }}
-<article class="max-w-3xl mx-auto px-6 py-10 md:py-16">
-  <header class="mb-8">
-    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      {{ .Title }}
-    </h1>
-    {{ if and (not .IsPage) false }}{{/* placeholder */}}{{ end }}
-    {{ with .Date }}
-      {{ if not $.IsHome }}
-        <p class="mt-2 text-sm text-slate-500">{{ .Format "January 2, 2006" }}</p>
+<article class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
+  <header class="grid grid-cols-12 gap-6 mb-12 md:mb-16">
+    <div class="col-span-12 md:col-span-3">
+      {{ with .Section }}<p class="caption">§ {{ . | humanize }}</p>{{ end }}
+    </div>
+    <div class="col-span-12 md:col-span-9">
+      <h1 class="font-display font-normal text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] tracking-[-0.025em] text-slate-900 dark:text-slate-100">
+        {{ .Title }}
+      </h1>
+      {{ if and (not .IsHome) .Date (not .Date.IsZero) }}
+        {{ if in (slice "news") .Section }}
+          <p class="mt-4 caption"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time></p>
+        {{ end }}
       {{ end }}
-    {{ end }}
+    </div>
   </header>
-  <div class="prose-like">
-    {{ .Content }}
+
+  <div class="grid grid-cols-12 gap-6">
+    <div class="col-span-12 md:col-span-9 md:col-start-4">
+      <div class="prose-like">
+        {{ .Content }}
+      </div>
+    </div>
   </div>
 </article>
 {{ end }}

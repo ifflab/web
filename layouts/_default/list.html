@@ -1,28 +1,38 @@
 {{ define "main" }}
-<section class="max-w-5xl mx-auto px-6 py-10 md:py-16">
-  <header class="mb-10">
-    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      {{ .Title }}
-    </h1>
-    {{ with .Content }}
-      <div class="prose-like mt-4">{{ . }}</div>
-    {{ end }}
+<section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
+  <header class="grid grid-cols-12 gap-6 mb-12 md:mb-16">
+    <div class="col-span-12 md:col-span-3">
+      {{ with .Section }}<p class="caption">§ {{ . | humanize }}</p>{{ end }}
+    </div>
+    <div class="col-span-12 md:col-span-9">
+      <h1 class="font-display font-normal text-4xl md:text-5xl tracking-[-0.022em] text-slate-900 dark:text-slate-100">
+        {{ .Title }}
+      </h1>
+      {{ with .Content }}
+        <div class="prose-like mt-6 max-w-[42rem]">{{ . }}</div>
+      {{ end }}
+    </div>
   </header>
 
-  <ul class="space-y-4">
+  <ol class="border-t hairline">
     {{ range .Pages }}
-      <li>
-        <a href="{{ .RelPermalink }}"
-           class="block rounded-lg border border-slate-200 dark:border-slate-800 p-4 hover:border-brand-500 dark:hover:border-brand-500">
-          <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h2>
+      <li class="border-b hairline">
+        <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-4 py-6 group items-baseline">
+          <div class="col-span-12 md:col-span-8">
+            <h2 class="font-display text-xl md:text-2xl leading-snug text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+              {{ .Title }}
+            </h2>
+          </div>
           {{ with .Summary }}
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{{ . | plainify | truncate 160 }}</p>
+            <p class="col-span-12 md:col-span-4 text-sm text-slate-600 dark:text-slate-400">
+              {{ . | plainify | truncate 160 }}
+            </p>
           {{ end }}
         </a>
       </li>
     {{ else }}
-      <li class="text-slate-500">Nothing here yet.</li>
+      <li class="py-6 text-slate-500">Nothing here yet.</li>
     {{ end }}
-  </ul>
+  </ol>
 </section>
 {{ end }}

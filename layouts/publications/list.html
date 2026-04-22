@@ -1,17 +1,20 @@
 {{ define "main" }}
-<section class="max-w-4xl mx-auto px-6 py-10 md:py-16">
-  <header class="mb-10">
-    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      Publications
-    </h1>
-    {{ with .Content }}
-      <div class="prose-like mt-4 max-w-2xl">{{ . }}</div>
-    {{ end }}
+<section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
+  <header class="grid grid-cols-12 gap-6 mb-12 md:mb-16">
+    <div class="col-span-12 md:col-span-3">
+      <p class="caption">§ Publications</p>
+    </div>
+    <div class="col-span-12 md:col-span-9">
+      <h1 class="font-display font-normal text-4xl md:text-5xl tracking-[-0.022em] text-slate-900 dark:text-slate-100">
+        Papers, preprints, proceedings
+      </h1>
+      {{ with .Content }}
+        <div class="prose-like mt-6 max-w-[42rem]">{{ . }}</div>
+      {{ end }}
+    </div>
   </header>
 
   {{ $all := sort (default slice site.Data.publications) "year" "desc" }}
-
-  {{/* Collect unique years preserving the descending order from $all. */}}
   {{ $years := slice }}
   {{ range $all }}
     {{ if not (in $years .year) }}
@@ -22,27 +25,47 @@
   {{ if $all }}
     {{ range $years }}
       {{ $year := . }}
-      <section class="mt-10 first:mt-0">
-        <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100 pb-2 mb-4 border-b border-slate-200 dark:border-slate-800">
-          {{ $year }}
-        </h2>
-        <ol class="space-y-5">
-          {{ range where $all "year" $year }}
-            <li class="text-slate-700 dark:text-slate-300">
-              <p class="font-medium text-slate-900 dark:text-slate-100">{{ .title }}</p>
-              {{ with .authors }}<p class="text-sm mt-0.5">{{ . }}</p>{{ end }}
-              {{ with .venue }}<p class="text-sm italic text-slate-600 dark:text-slate-400 mt-0.5">{{ . }}</p>{{ end }}
-              <p class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                {{ with .doi   }}<a href="https://doi.org/{{ . }}"         class="text-brand-700 dark:text-brand-500 hover:underline">DOI</a>{{ end }}
-                {{ with .arxiv }}<a href="https://arxiv.org/abs/{{ . }}"   class="text-brand-700 dark:text-brand-500 hover:underline">arXiv</a>{{ end }}
-                {{ with .pdf   }}<a href="{{ . }}"                         class="text-brand-700 dark:text-brand-500 hover:underline">PDF</a>{{ end }}
-                {{ with .code  }}<a href="{{ . }}"                         class="text-brand-700 dark:text-brand-500 hover:underline">Code</a>{{ end }}
-                {{ with .url   }}<a href="{{ . }}"                         class="text-brand-700 dark:text-brand-500 hover:underline">Link</a>{{ end }}
-              </p>
+      {{ $entries := where $all "year" $year }}
+      <div class="mt-16 first:mt-0 grid grid-cols-12 gap-6">
+        <div class="col-span-12 md:col-span-3">
+          <p class="font-display text-5xl md:text-6xl text-slate-900 dark:text-slate-100 tracking-[-0.02em] leading-none">
+            {{ $year }}
+          </p>
+        </div>
+        <ol class="col-span-12 md:col-span-9 border-t hairline">
+          {{ range $i, $p := $entries }}
+            <li class="border-b hairline grid grid-cols-12 gap-4 py-6 items-baseline">
+              <span class="col-span-2 md:col-span-1 font-mono text-[0.78rem] text-slate-400">
+                {{ printf "%02d" (add $i 1) }}
+              </span>
+              <div class="col-span-10 md:col-span-11">
+                <p class="font-display text-lg md:text-xl leading-snug text-slate-900 dark:text-slate-100">
+                  {{ $p.title }}
+                </p>
+                {{ with $p.authors }}
+                  <p class="mt-1.5 text-[0.95rem] text-slate-600 dark:text-slate-400">{{ . }}</p>
+                {{ end }}
+                {{ with $p.venue }}
+                  <p class="text-[0.95rem] italic text-slate-500">{{ . }}</p>
+                {{ end }}
+                {{ $links := slice }}
+                {{ with $p.doi   }}{{ $links = $links | append (dict "label" "DOI"   "url" (printf "https://doi.org/%s" .)) }}{{ end }}
+                {{ with $p.arxiv }}{{ $links = $links | append (dict "label" "arXiv" "url" (printf "https://arxiv.org/abs/%s" .)) }}{{ end }}
+                {{ with $p.pdf   }}{{ $links = $links | append (dict "label" "PDF"   "url" .) }}{{ end }}
+                {{ with $p.code  }}{{ $links = $links | append (dict "label" "Code"  "url" .) }}{{ end }}
+                {{ with $p.url   }}{{ $links = $links | append (dict "label" "Link"  "url" .) }}{{ end }}
+                {{ if $links }}
+                  <p class="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[0.78rem] uppercase tracking-[0.1em]">
+                    {{ range $links }}
+                      <a href="{{ .url }}" class="text-brand-600 dark:text-brand-400 hover:underline underline-offset-[3px]">{{ .label }}</a>
+                    {{ end }}
+                  </p>
+                {{ end }}
+              </div>
             </li>
           {{ end }}
         </ol>
-      </section>
+      </div>
     {{ end }}
   {{ else }}
     <p class="text-slate-500">No publications yet. Add entries to <code>data/publications.yaml</code>.</p>

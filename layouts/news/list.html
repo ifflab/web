@@ -1,30 +1,35 @@
 {{ define "main" }}
-<section class="max-w-5xl mx-auto px-6 py-10 md:py-16">
-  <header class="mb-10">
-    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-      News
-    </h1>
-    {{ with .Content }}
-      <div class="prose-like mt-4 max-w-2xl">{{ . }}</div>
-    {{ end }}
+<section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
+  <header class="grid grid-cols-12 gap-6 mb-12 md:mb-16">
+    <div class="col-span-12 md:col-span-3">
+      <p class="caption">§ News</p>
+    </div>
+    <div class="col-span-12 md:col-span-9">
+      <h1 class="font-display font-normal text-4xl md:text-5xl tracking-[-0.022em] text-slate-900 dark:text-slate-100">
+        Announcements, papers, events
+      </h1>
+      {{ with .Content }}
+        <div class="prose-like mt-6 max-w-[42rem]">{{ . }}</div>
+      {{ end }}
+    </div>
   </header>
 
   {{ $pages := .Paginate (.RegularPages.ByDate.Reverse) }}
   {{ if $pages.Pages }}
-    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <ul class="border-t hairline">
       {{ range $pages.Pages }}
         {{ partial "news-card.html" . }}
       {{ end }}
     </ul>
 
     {{ if gt $pages.TotalPages 1 }}
-      <nav class="mt-10 flex items-center justify-between text-sm">
+      <nav class="mt-10 flex items-center justify-between font-mono text-[0.78rem] uppercase tracking-[0.1em]">
         {{ with $pages.Prev }}
-          <a href="{{ .URL }}" class="text-brand-700 dark:text-brand-500 hover:underline">← Newer</a>
+          <a href="{{ .URL }}" class="text-brand-600 dark:text-brand-400 hover:underline underline-offset-4">← Newer</a>
         {{ else }}<span></span>{{ end }}
-        <span class="text-slate-500">Page {{ $pages.PageNumber }} of {{ $pages.TotalPages }}</span>
+        <span class="text-slate-500">Page {{ $pages.PageNumber }} / {{ $pages.TotalPages }}</span>
         {{ with $pages.Next }}
-          <a href="{{ .URL }}" class="text-brand-700 dark:text-brand-500 hover:underline">Older →</a>
+          <a href="{{ .URL }}" class="text-brand-600 dark:text-brand-400 hover:underline underline-offset-4">Older →</a>
         {{ else }}<span></span>{{ end }}
       </nav>
     {{ end }}

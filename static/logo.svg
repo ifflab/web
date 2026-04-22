@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Placeholder logo: replace with your own SVG. Kept intentionally tiny. -->
-  <rect x="4" y="4" width="56" height="56" rx="12" fill="currentColor"/>
-  <text x="32" y="40" font-family="system-ui, sans-serif" font-size="22"
-        font-weight="700" text-anchor="middle" fill="white">if</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+     fill="none" stroke="currentColor" stroke-width="1.8"
+     stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+  <!-- Nabla (gradient operator): inverted triangle. -->
+  <path d="M 3.5 5.5 L 20.5 5.5 L 12 21 Z"/>
 </svg>

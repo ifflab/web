@@ -5,6 +5,13 @@
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
   <link rel="icon" href="/logo.svg" type="image/svg+xml">
 
+  {{/* Typography: Newsreader (display serif), Inter Tight (body sans),
+       JetBrains Mono (labels). Self-hosting is a follow-up task. */}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
   {{/* No-flash dark mode: runs synchronously before any paint. */}}
   <script>
     (function () {
