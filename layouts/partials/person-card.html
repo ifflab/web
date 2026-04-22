@@ -2,13 +2,13 @@
 <li class="border-b hairline last:border-0">
   <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-4 py-6 md:py-8 group items-start">
     <div class="col-span-12 md:col-span-2 shrink-0">
-      <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-[color-mix(in_oklch,var(--color-ink)_6%,transparent)] dark:bg-[color-mix(in_oklch,var(--color-ink-dark)_8%,transparent)] flex items-center justify-center text-slate-400">
+      <div class="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden bg-[color-mix(in_oklch,var(--color-ink)_6%,transparent)] dark:bg-[color-mix(in_oklch,var(--color-ink-dark)_8%,transparent)] flex items-center justify-center text-slate-400">
         {{ with .Params.photo }}
           {{ with $.Resources.GetMatch . }}
-            <img src="{{ (.Fill "160x160 Center").RelPermalink }}" alt="" class="w-full h-full object-cover">
+            <img src="{{ (.Fill "224x224 Center").RelPermalink }}" alt="" class="w-full h-full object-cover">
           {{ end }}
         {{ else }}
-          <svg viewBox="0 0 24 24" class="w-8 h-8" fill="currentColor" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="w-10 h-10" fill="currentColor" aria-hidden="true">
             <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.34 0-10 1.67-10 5v3h20v-3c0-3.33-6.66-5-10-5z"/>
           </svg>
         {{ end }}
