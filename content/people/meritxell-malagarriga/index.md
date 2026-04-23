@@ -12,5 +12,6 @@ draft: false
 ---
 
 Meritxell completed her MSc in Theoretical Chemistry and Computational
-Modelling at the University of Valencia (2024). Her research focused on
-machine learning potentials and enzymatic reaction mechanisms.
+Modelling at the University of Valencia (2023). Her research focused on the
+development of a machine learning potential for chorismate conversion to
+pyruvate in aqueous solution.

@@ -12,5 +12,5 @@ draft: false
 ---
 
 Valentin completed his MSc in Theoretical Chemistry and Computational
-Modelling at the University of Valencia (2024). His research focused on
-machine learning potentials and enzymatic reaction mechanisms.
+Modelling at the University of Valencia (2024). His master's thesis was dedicated
+to training and validation of a reactive ML(EMLE)/MM potential for Chorismate Mutase. 
