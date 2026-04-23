@@ -5,15 +5,10 @@
 {{ $active   := where (where $all "Params.alumnus" "!=" true) "Params.visitor" "!=" true }}
 
 <section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
-  <header class="grid grid-cols-12 gap-6 mb-12 md:mb-16">
-    <div class="col-span-12 md:col-span-3">
-      <p class="caption">§ People</p>
-    </div>
-    <div class="col-span-12 md:col-span-9">
-      <h1 class="font-display font-normal text-4xl md:text-5xl tracking-[-0.022em] text-slate-900 dark:text-slate-100">
-        Members, past and present
-      </h1>
-    </div>
+  <header class="mb-12 md:mb-16">
+    <h1 class="font-mono uppercase tracking-[0.08em] text-3xl md:text-4xl text-slate-900 dark:text-slate-100">
+      § People
+    </h1>
   </header>
 
   {{ if $active }}
