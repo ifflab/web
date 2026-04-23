@@ -1,6 +1,6 @@
-{{/* Expects a Page context. Masthead-row-style person entry used by /people/. */}}
+{{/* Expects a Page context. Inline person entry used by /people/. */}}
 <li class="border-b hairline last:border-0">
-  <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-4 py-6 md:py-8 group items-start">
+  <div class="grid grid-cols-12 gap-4 py-4 md:py-5 items-start">
     <div class="col-span-12 md:col-span-2 shrink-0">
       <div class="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden bg-[color-mix(in_oklch,var(--color-ink)_6%,transparent)] dark:bg-[color-mix(in_oklch,var(--color-ink-dark)_8%,transparent)] flex items-center justify-center text-slate-400">
         {{ with .Params.photo }}
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-10">
-      <h3 class="font-display text-2xl md:text-3xl tracking-[-0.02em] leading-[1.1] text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+      <h3 class="font-display text-xl md:text-2xl tracking-[-0.02em] leading-[1.1] text-slate-900 dark:text-slate-100">
         {{ .Title }}
       </h3>
       {{ with .Params.role }}
@@ -26,6 +26,17 @@
           {{ . | plainify | truncate 280 }}
         </p>
       {{ end }}
+      {{ $links := slice }}
+      {{ with .Params.email   }}{{ $links = $links | append (dict "label" "Email"  "url" (printf "mailto:%s" .)) }}{{ end }}
+      {{ with .Params.website }}{{ $links = $links | append (dict "label" "Web"    "url" .) }}{{ end }}
+      {{ with .Params.orcid   }}{{ $links = $links | append (dict "label" "ORCID"  "url" (printf "https://orcid.org/%s" .)) }}{{ end }}
+      {{ if $links }}
+        <p class="mt-2.5 flex flex-wrap gap-x-4 font-mono text-[0.78rem] uppercase tracking-[0.1em]">
+          {{ range $links }}
+            <a href="{{ .url }}" class="text-brand-600 dark:text-brand-400 hover:underline underline-offset-[3px]">{{ .label }}</a>
+          {{ end }}
+        </p>
+      {{ end }}
     </div>
-  </a>
+  </div>
 </li>

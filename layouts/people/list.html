@@ -4,11 +4,9 @@
 {{ $visitors := where (where $all "Params.alumnus" "!=" true) "Params.visitor" true }}
 {{ $active   := where (where $all "Params.alumnus" "!=" true) "Params.visitor" "!=" true }}
 
-<section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
-  <header class="mb-12 md:mb-16">
-    <h1 class="font-mono uppercase tracking-[0.08em] text-3xl md:text-4xl text-slate-900 dark:text-slate-100">
-      § People
-    </h1>
+<section class="max-w-[72rem] mx-auto px-6 py-8 md:py-12">
+  <header class="mb-6 md:mb-8">
+    <h1 class="caption text-base">§ People</h1>
   </header>
 
   {{ if $active }}
@@ -20,15 +18,8 @@
   {{ end }}
 
   {{ if $visitors }}
-    <div class="mt-20 grid grid-cols-12 gap-6 mb-6">
-      <div class="col-span-12 md:col-span-3">
-        <p class="caption">Visitors</p>
-      </div>
-      <div class="col-span-12 md:col-span-9">
-        <h2 class="font-display font-normal text-2xl md:text-3xl tracking-[-0.02em] text-slate-900 dark:text-slate-100">
-          Visiting researchers
-        </h2>
-      </div>
+    <div class="mt-12 mb-6">
+      <h2 class="caption text-base">Visitors</h2>
     </div>
     <ul class="border-t hairline">
       {{ range $visitors }}
@@ -38,15 +29,8 @@
   {{ end }}
 
   {{ if $alumni }}
-    <div class="mt-20 grid grid-cols-12 gap-6 mb-6">
-      <div class="col-span-12 md:col-span-3">
-        <p class="caption">Alumni</p>
-      </div>
-      <div class="col-span-12 md:col-span-9">
-        <h2 class="font-display font-normal text-2xl md:text-3xl tracking-[-0.02em] text-slate-900 dark:text-slate-100">
-          Former members
-        </h2>
-      </div>
+    <div class="mt-12 mb-6">
+      <h2 class="caption text-base">Alumni</h2>
     </div>
     <ul class="border-t hairline">
       {{ range $alumni }}

@@ -1,9 +1,7 @@
 {{ define "main" }}
-<section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
-  <header class="mb-12 md:mb-16">
-    <h1 class="font-mono uppercase tracking-[0.08em] text-3xl md:text-4xl text-slate-900 dark:text-slate-100">
-      § Publications
-    </h1>
+<section class="max-w-[72rem] mx-auto px-6 py-8 md:py-12">
+  <header class="mb-6 md:mb-8">
+    <h1 class="caption text-base">§ Publications</h1>
   </header>
 
   {{ $all := sort (default slice site.Data.publications) "year" "desc" }}
@@ -15,20 +13,18 @@
   {{ end }}
 
   {{ if $all }}
+    {{ $n := 0 }}
     {{ range $years }}
       {{ $year := . }}
       {{ $entries := where $all "year" $year }}
-      <div class="mt-16 first:mt-0 grid grid-cols-12 gap-6">
-        <div class="col-span-12 md:col-span-3">
-          <p class="font-display text-5xl md:text-6xl text-slate-900 dark:text-slate-100 tracking-[-0.02em] leading-none">
-            {{ $year }}
-          </p>
-        </div>
-        <ol class="col-span-12 md:col-span-9 border-t hairline">
-          {{ range $i, $p := $entries }}
-            <li class="border-b hairline grid grid-cols-12 gap-4 py-6 items-baseline">
+      <div class="mt-10 first:mt-0">
+        <p class="caption text-base mb-3">{{ $year }}</p>
+        <ol class="border-t hairline">
+          {{ range $p := $entries }}
+            {{ $n = add $n 1 }}
+            <li class="border-b hairline grid grid-cols-12 gap-4 py-4 items-baseline">
               <span class="col-span-2 md:col-span-1 font-mono text-[0.78rem] text-slate-400">
-                {{ printf "%02d" (add $i 1) }}
+                {{ printf "%02d" $n }}
               </span>
               <div class="col-span-10 md:col-span-11">
                 <p class="font-display text-lg md:text-xl leading-snug text-slate-900 dark:text-slate-100">

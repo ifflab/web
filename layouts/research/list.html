@@ -1,20 +1,18 @@
 {{ define "main" }}
-<section class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
-  <header class="mb-12 md:mb-16">
-    <h1 class="font-mono uppercase tracking-[0.08em] text-3xl md:text-4xl text-slate-900 dark:text-slate-100">
-      § Research
-    </h1>
+<section class="max-w-[72rem] mx-auto px-6 py-8 md:py-12">
+  <header class="mb-6 md:mb-8">
+    <h1 class="caption text-base">§ Research</h1>
   </header>
 
   <ol class="border-t hairline">
     {{ range $i, $p := .RegularPages.ByWeight }}
       <li class="border-b hairline">
-        <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-4 py-8 md:py-10 group items-baseline">
+        <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-4 py-5 md:py-6 group items-baseline">
           <span class="col-span-2 md:col-span-1 font-mono text-[0.78rem] text-slate-400">
             {{ printf "%02d" (add $i 1) }}
           </span>
           <div class="col-span-10 md:col-span-11">
-            <h2 class="font-display text-2xl md:text-3xl tracking-[-0.02em] leading-[1.1] text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+            <h2 class="font-display text-xl md:text-2xl tracking-[-0.02em] leading-[1.1] text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
               {{ .Title }}
             </h2>
             {{ with .Summary }}
