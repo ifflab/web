@@ -1,9 +1,6 @@
 ---
 title: "Intelligent Force Fields Lab"
-description: "Research group at [institution]. We study [topic]."
+description: "Teaching molecular simulations to work smart, not hard"
 ---
-
-We are a research group working on **[short topic description]**. Our work
-combines [method A], [method B], and collaborations with [partners].
 
 If you are interested in joining the group, see the [contact page](/contact/).
