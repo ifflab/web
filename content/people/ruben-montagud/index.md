@@ -2,7 +2,7 @@
 title: "Rubén Montagud Andreu"
 role: "PhD Student"
 photo: "avatar.jpg"
-email: "rumonan@alumni.uv.es"
+email: "ruben.montagud@uv.es"
 orcid: ""
 website: ""
 weight: 20
