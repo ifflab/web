@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="max-w-[72rem] mx-auto px-6 py-8 md:py-12">
   <header class="mb-6 md:mb-8">
-    <h1 class="caption text-base">§ Publications</h1>
+    <h1 class="caption text-lg">§ Publications</h1>
   </header>
 
   {{ $all := sort (default slice site.Data.publications) "year" "desc" }}
