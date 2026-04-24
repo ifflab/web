@@ -10,7 +10,10 @@
   </header>
 
   {{ if $active }}
-    <ul class="border-t hairline">
+    <div class="mb-4">
+      <h2 class="caption text-base">Group members</h2>
+    </div>
+    <ul class="border-t hairline pt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
       {{ range $active }}
         {{ partial "person-card.html" . }}
       {{ end }}
@@ -18,10 +21,10 @@
   {{ end }}
 
   {{ if $visitors }}
-    <div class="mt-12 mb-6">
+    <div class="mt-8 mb-4">
       <h2 class="caption text-base">Visitors</h2>
     </div>
-    <ul class="border-t hairline">
+    <ul class="border-t hairline pt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
       {{ range $visitors }}
         {{ partial "person-card.html" . }}
       {{ end }}
@@ -29,10 +32,10 @@
   {{ end }}
 
   {{ if $alumni }}
-    <div class="mt-12 mb-6">
+    <div class="mt-8 mb-4">
       <h2 class="caption text-base">Alumni</h2>
     </div>
-    <ul class="border-t hairline">
+    <ul class="border-t hairline pt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
       {{ range $alumni }}
         {{ partial "person-card.html" . }}
       {{ end }}
