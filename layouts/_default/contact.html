@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="max-w-[72rem] mx-auto px-6 py-8 md:py-12">
+  <header class="mb-6 md:mb-8">
+    <h1 class="caption text-lg">§ {{ .Title }}</h1>
+  </header>
+
+  <div class="grid grid-cols-12 gap-6 items-start">
+    <div class="col-span-12 md:col-span-6">
+      {{ $map := resources.Get "images/contact-map.png" }}
+      <a href="https://maps.app.goo.gl/7GW2SHH8dTQc5XRA8"
+         target="_blank" rel="noopener"
+         class="block w-full overflow-hidden rounded-sm border hairline">
+        <img src="{{ $map.RelPermalink }}"
+             alt="Map: Calle Dr. Moliner 50, Burjassot"
+             loading="lazy"
+             class="w-full h-auto block">
+      </a>
+    </div>
+    <div class="col-span-12 md:col-span-6">
+      <div class="prose-like">
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
