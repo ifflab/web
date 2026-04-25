@@ -1,6 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-     fill="none" stroke="currentColor" stroke-width="1.8"
-     stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
-  <!-- Nabla (gradient operator): inverted triangle. -->
-  <path d="M 3.5 5.5 L 20.5 5.5 L 12 21 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.09 9.09 181.82 181.82" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" color="#1a1a1a">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      svg { color: #ffffff; }
+    }
+  </style>
+  <!-- Outer hexagon (pointy-top) -->
+  <polygon points="100,19.2 170,60 170,140 100,180.8 30,140 30,60" />
+
+  <!-- Inner parallel lines (Kekulé double bonds) - C3 symmetric, -2% length -->
+  <!-- Top-right edge -->
+  <line x1="101.22" y1="30.35"  x2="159.68" y2="64.43"  />
+  <!-- Bottom-right edge -->
+  <line x1="159.71" y1="135.88" x2="100.96" y2="169.47" />
+  <!-- Left edge -->
+  <line x1="39.07"  y1="133.77" x2="39.36"  y2="66.10"  />
+
+  <!-- Top triangle (apex up) -->
+  <line x1="61.03" y1="77.5"  x2="100"    y2="55"   />
+  <line x1="100"   y1="55"    x2="138.97" y2="77.5" />
+
+  <!-- Bottom triangle (apex down) -->
+  <line x1="61.03" y1="122.5" x2="100"    y2="145"   />
+  <line x1="100"   y1="145"   x2="138.97" y2="122.5" />
+
+  <!-- Crossing diagonals (X / bowtie) -->
+  <line x1="61.03"  y1="77.5" x2="138.97" y2="122.5" />
+  <line x1="138.97" y1="77.5" x2="61.03"  y2="122.5" />
+
+  <!-- Nodes -->
+  <circle cx="100"    cy="55"    r="8" fill="currentColor" stroke="none" />
+  <circle cx="138.97" cy="77.5"  r="8" fill="currentColor" stroke="none" />
+  <circle cx="138.97" cy="122.5" r="8" fill="currentColor" stroke="none" />
+  <circle cx="100"    cy="145"   r="8" fill="currentColor" stroke="none" />
+  <circle cx="61.03"  cy="122.5" r="8" fill="currentColor" stroke="none" />
+  <circle cx="61.03"  cy="77.5"  r="8" fill="currentColor" stroke="none" />
 </svg>
