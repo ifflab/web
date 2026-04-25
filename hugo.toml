@@ -43,7 +43,7 @@ weight = 50
 
 [params]
 description = "Research group at [institution]. We work on [short topic description]."
-email       = "contact@ifflab.xyz"
+email       = "kirill.zinovjev@uv.es"
 
   [params.social]
   github  = "ifflab"

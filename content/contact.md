@@ -1,21 +1,22 @@
 ---
 title: "Contact"
+layout: contact
 ---
 
 ## Get in touch
 
-**Email:** [contact@ifflab.xyz](mailto:contact@ifflab.xyz)
+{{< email "kirill.zinovjev@uv.es" >}}
+
+{{< github "IFFLab" >}}
 
 **Address:**
-Room XXX, Building Name
-Street Address
-City, Postcode
-Country
+Building E, 3rd Floor,
+Calle Dr. Moliner 50,
+Burjassot, 46100
 
 ## Prospective members
 
-We welcome applications from motivated students and postdocs interested in
-[brief research description]. Please email a short statement of interest
+We welcome applications from motivated students and postdocs. Please email a short statement of interest
 along with your CV.
 
 ## Visiting
