@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="max-w-[72rem] mx-auto px-6 py-16 md:py-24">
+  <header class="mb-8 md:mb-10">
+    <p class="caption text-lg mb-3">§ <a href="/research/" class="hover:text-slate-900 dark:hover:text-slate-100">Research</a></p>
+    <h1 class="font-display font-normal text-2xl md:text-3xl leading-snug tracking-[-0.02em] text-slate-900 dark:text-slate-100">
+      {{ .Title }}
+    </h1>
+  </header>
+
+  {{ with .Resources.GetMatch "featured.*" }}
+    <div class="grid grid-cols-12 gap-6 mb-8 md:mb-10">
+      <figure class="col-span-12 md:col-span-9 md:col-start-4">
+        <img src="{{ .RelPermalink }}" alt="" class="w-full rounded-sm">
+      </figure>
+    </div>
+  {{ end }}
+
+  <div class="grid grid-cols-12 gap-6">
+    <div class="col-span-12 md:col-span-9 md:col-start-4">
+      <div class="prose-like">
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+
+  <nav class="mt-20 pt-8 border-t hairline font-mono text-[0.78rem] uppercase tracking-[0.1em]">
+    <a href="/research/" class="text-brand-600 dark:text-brand-400 hover:underline underline-offset-4">← All research</a>
+  </nav>
+</article>
+{{ end }}

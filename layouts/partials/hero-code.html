@@ -1,0 +1,20 @@
+{{/* Decorative Python snippet for the home hero. Hand-tokenised so we can
+     mark method calls (.nf) and tag specific lines with diff styling — Chroma
+     does neither out of the box. Token classes follow Pygments conventions
+     so they share the .code-hero palette in main.css. */}}
+<div class="line"><span class="n">E</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="nf">_emle</span><span class="p">(</span></div>
+<div class="line">    <span class="n">atomic_numbers</span><span class="p">,</span> <span class="n">charges_mm</span><span class="p">,</span> <span class="n">xyz_qm</span><span class="p">,</span> <span class="n">xyz_mm</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">charge</span></div>
+<div class="line"><span class="p">)</span></div>
+<div class="line"><span class="n">dE_dxyz_qm</span><span class="p">,</span> <span class="n">dE_dxyz_mm</span> <span class="o">=</span> <span class="n">_torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="nf">grad</span><span class="p">(</span></div>
+<div class="line">    <span class="n">E</span><span class="o">.</span><span class="nf">sum</span><span class="p">(),</span> <span class="p">(</span><span class="n">xyz_qm</span><span class="p">,</span> <span class="n">xyz_mm</span><span class="p">),</span> <span class="n">allow_unused</span><span class="o">=</span><span class="n">allow_unused</span></div>
+<div class="line"><span class="p">)</span></div>
+<div class="line line-del"><span class="diff-marker">-</span><span class="n">dE_dxyz_qm_bohr</span> <span class="o">=</span> <span class="n">dE_dxyz_qm</span><span class="o">.</span><span class="nf">cpu</span><span class="p">()</span><span class="o">.</span><span class="nf">numpy</span><span class="p">()</span></div>
+<div class="line line-add"><span class="diff-marker">+</span><span class="n">dE_dxyz_qm_bohr</span> <span class="o">=</span> <span class="n">dE_dxyz_qm</span><span class="o">.</span><span class="nf">cpu</span><span class="p">()</span><span class="o">.</span><span class="nf">numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">_BOHR_TO_ANGSTROM</span></div>
+<div class="line"><span class="n">dE_dxyz_mm_bohr</span> <span class="o">=</span> <span class="p">(</span></div>
+<div class="line">    <span class="n">dE_dxyz_mm</span><span class="o">.</span><span class="nf">cpu</span><span class="p">()</span><span class="o">.</span><span class="nf">numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">_BOHR_TO_ANGSTROM</span></div>
+<div class="line">    <span class="k">if</span> <span class="n">dE_dxyz_mm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></div>
+<div class="line">    <span class="k">else</span> <span class="n">_np</span><span class="o">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">xyz_mm</span><span class="o">.</span><span class="nf">cpu</span><span class="p">()</span><span class="o">.</span><span class="nf">numpy</span><span class="p">())</span></div>
+<div class="line"><span class="p">)</span></div>
+<div class="line line-add"><span class="diff-marker">+</span><span class="c1"># Store the the MM and EMLE energies. The MM energy is an approximation.</span></div>
+<div class="line line-add"><span class="diff-marker">+</span><span class="n">E_mm</span> <span class="o">=</span> <span class="n">E_mm_qm_vac</span> <span class="o">+</span> <span class="n">E</span><span class="o">.</span><span class="nf">sum</span><span class="p">()</span><span class="o">.</span><span class="nf">detach</span><span class="p">()</span><span class="o">.</span><span class="nf">cpu</span><span class="p">()</span><span class="o">.</span><span class="nf">numpy</span><span class="p">()</span></div>
+<div class="line line-add"><span class="diff-marker">+</span><span class="n">E_emle</span> <span class="o">=</span> <span class="n">E_tot</span></div>
