@@ -2,16 +2,23 @@
 
 {{/* ============ HERO ============ */}}
 <section>
-  <div class="max-w-[72rem] mx-auto px-6 pt-10 md:pt-16 pb-6 md:pb-8">
-    <div class="grid grid-cols-12 gap-6 md:items-baseline-last">
+  <div class="max-w-[72rem] mx-auto px-6 pt-10 md:pt-16 pb-6 md:pb-8 relative">
+    {{/* Decorative Python snippet with a "GitHub diff" line in the middle.
+         Anchored upper-right; wide enough that its left edge crosses into the
+         right portion of the H1's column for a slight overlap with the title. */}}
+    <div class="code-hero absolute right-6 top-10 md:top-16 w-[55%] max-w-[36rem] z-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
+      {{ partial "hero-code.html" . }}
+    </div>
+
+    <div class="grid grid-cols-12 gap-6 md:items-baseline-last relative z-10">
       <h1 class="col-span-12 md:col-span-9 md:col-start-1 md:row-start-1 font-display font-normal
                  text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-[-0.025em]
                  text-slate-900 dark:text-slate-100">
-        {{ .Title }}
+        {{ replaceRE "\\s+(\\S+)$" "<br>$1" .Title | safeHTML }}
       </h1>
-      <div class="col-span-12 md:col-span-5 md:col-start-8 md:row-start-1 md:self-baseline-last mt-2 md:mt-0">
+      <div class="col-span-12 md:col-span-5 md:col-start-8 md:row-start-1 md:self-baseline-last mt-3 md:mt-0">
         {{ with (or .Description site.Params.description) }}
-          <p class="text-[1.0625rem] leading-[1.6] text-slate-600 dark:text-slate-400">{{ . }}</p>
+          <p class="text-[1.0625rem] leading-[1.6] text-slate-600 dark:text-slate-400 text-right md:text-left">{{ . }}</p>
         {{ end }}
       </div>
     </div>
