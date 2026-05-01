@@ -16,9 +16,9 @@
                  text-slate-900 dark:text-slate-100">
         {{ replaceRE "\\s+(\\S+)$" "<br>$1" .Title | safeHTML }}
       </h1>
-      <div class="col-span-12 md:col-span-5 md:col-start-8 md:row-start-1 md:self-baseline-last mt-3 md:mt-0">
+      <div class="col-span-12 md:col-span-9 md:col-start-4 md:row-start-1 md:self-baseline-last mt-3 md:mt-0">
         {{ with (or .Description site.Params.description) }}
-          <p class="text-[1.0625rem] leading-[1.6] text-slate-600 dark:text-slate-400 text-right md:text-left">{{ . }}</p>
+          <p class="text-xl leading-[1.6] text-slate-600 dark:text-slate-400 text-right md:whitespace-nowrap">{{ . }}</p>
         {{ end }}
       </div>
     </div>
@@ -28,44 +28,6 @@
   </div>
 </section>
 
-{{/* ============ RESEARCH ============ */}}
-{{ $research := where site.RegularPages "Section" "research" }}
-{{ if $research }}
-<section class="border-t hairline">
-  <div class="max-w-[72rem] mx-auto px-6 py-10 md:py-14 grid grid-cols-12 gap-6">
-    <div class="col-span-12 md:col-span-3">
-      <h2 class="font-display font-normal text-3xl md:text-4xl tracking-tight text-slate-900 dark:text-slate-100">
-        Lines of work
-      </h2>
-      <a href="/research/"
-         class="inline-block mt-4 font-mono text-[0.78rem] uppercase tracking-[0.12em]
-                text-brand-600 dark:text-brand-400 hover:underline underline-offset-4">
-        See all →
-      </a>
-    </div>
-    <ol class="col-span-12 md:col-span-9 space-y-6">
-      {{ range $research }}
-        {{ $img := .Resources.GetMatch "featured.*" }}
-        <li class="grid grid-cols-12 gap-4 items-start pb-6 border-b hairline last:border-0 last:pb-0">
-          <figure class="col-span-2">
-            {{ if $img }}<img src="{{ $img.RelPermalink }}" alt="" class="w-full rounded-sm">{{ end }}
-          </figure>
-          <div class="col-span-10">
-            <h3 class="font-display font-normal text-2xl md:text-3xl tracking-tight text-slate-900 dark:text-slate-100">
-              {{ .Title }}
-            </h3>
-            {{ with .Summary }}
-              <p class="mt-2 text-[1.0625rem] leading-[1.65] text-slate-600 dark:text-slate-400">
-                {{ . | plainify | truncate 240 }}
-              </p>
-            {{ end }}
-          </div>
-        </li>
-      {{ end }}
-    </ol>
-  </div>
-</section>
-{{ end }}
 
 {{/* ============ NEWS ============ */}}
 {{ $news := where site.RegularPages "Section" "news" | first 5 }}
