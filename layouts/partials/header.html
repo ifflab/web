@@ -1,5 +1,5 @@
 <header class="border-b hairline">
-  <div class="max-w-[72rem] mx-auto px-6 py-5 flex items-center justify-between gap-6 flex-wrap">
+  <div class="relative max-w-[72rem] mx-auto px-6 py-5 flex items-center justify-between gap-6">
 
     {{/* Wordmark: logo glyph in teal + "iFFLab" in mono small caps */}}
     <a href="/" class="flex items-center gap-2.5 text-slate-900 dark:text-slate-100 group">
@@ -11,21 +11,58 @@
       </span>
     </a>
 
-    <nav class="flex items-center gap-5 md:gap-7 text-[0.78rem]">
+    {{/* Mobile: hamburger toggle button (hidden at md+) */}}
+    <button id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav"
+            class="md:hidden text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 cursor-pointer">
+      <svg data-nav-icon-closed xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+        <line x1="3" y1="7"  x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+      <svg data-nav-icon-open class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+        <line x1="5"  y1="5"  x2="19" y2="19"/>
+        <line x1="19" y1="5"  x2="5"  y2="19"/>
+      </svg>
+    </button>
+
+    {{/* Nav: dropdown panel on small screens, inline on md+.
+         JS toggles `hidden` <-> `flex` on the button click. md:flex forces visible at md+. */}}
+    <nav id="site-nav"
+         class="hidden md:flex
+                flex-col items-start gap-0
+                md:flex-row md:items-center md:gap-7
+                text-[0.78rem]
+                absolute top-full left-0 right-0 z-40
+                bg-white dark:bg-slate-950
+                border-b hairline px-6 py-2
+                md:static md:bg-transparent dark:md:bg-transparent md:border-0 md:p-0">
       {{ range site.Menus.main }}
         {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
         <a href="{{ .URL }}"
            class="font-mono uppercase tracking-[0.12em] transition
+                  w-full py-3 md:w-auto md:py-0
                   {{ if $active }}text-slate-900 dark:text-slate-100{{ else }}text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100{{ end }}">
           {{ .Name }}
         </a>
       {{ end }}
 
-      {{/* Text-only dark-mode toggle: (light)/(dark) */}}
+      {{/* Sun (in light mode → click to go dark) / Moon (in dark mode → click to go light) */}}
       <button id="theme-toggle" aria-label="Toggle colour theme"
-              class="font-mono uppercase tracking-[0.12em] text-[0.78rem] text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 cursor-pointer">
-        <span class="dark:hidden">(dark)</span>
-        <span class="hidden dark:inline">(light)</span>
+              class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 cursor-pointer w-full py-3 md:w-auto md:py-0 md:-translate-y-px flex items-center">
+        <svg class="dark:hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="2"  x2="12" y2="4"/>
+          <line x1="12" y1="20" x2="12" y2="22"/>
+          <line x1="2"  y1="12" x2="4"  y2="12"/>
+          <line x1="20" y1="12" x2="22" y2="12"/>
+          <line x1="4.9"  y1="4.9"  x2="6.3"  y2="6.3"/>
+          <line x1="17.7" y1="17.7" x2="19.1" y2="19.1"/>
+          <line x1="4.9"  y1="19.1" x2="6.3"  y2="17.7"/>
+          <line x1="17.7" y1="6.3"  x2="19.1" y2="4.9"/>
+        </svg>
+        <svg class="hidden dark:inline" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
       </button>
     </nav>
   </div>
