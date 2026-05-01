@@ -19,20 +19,23 @@
     </div>
   </header>
 
-  {{ with .Params.cover }}
-    {{ with $.Resources.GetMatch . }}
-      <figure class="my-8 md:my-12">
+  <div class="grid grid-cols-12 gap-6">
+    {{ with .Resources.GetMatch "featured.*" }}
+      <figure class="col-span-12 md:col-span-3 md:col-start-4">
         <img src="{{ .RelPermalink }}" alt="" class="w-full rounded-sm">
       </figure>
-    {{ end }}
-  {{ end }}
-
-  <div class="grid grid-cols-12 gap-6">
-    <div class="col-span-12 md:col-span-9 md:col-start-4">
-      <div class="prose-like">
-        {{ .Content }}
+      <div class="col-span-12 md:col-span-6">
+        <div class="prose-like">
+          {{ $.Page.Content }}
+        </div>
       </div>
-    </div>
+    {{ else }}
+      <div class="col-span-12 md:col-span-9 md:col-start-4">
+        <div class="prose-like">
+          {{ .Content }}
+        </div>
+      </div>
+    {{ end }}
   </div>
 
   {{ $all := where site.RegularPages "Section" "news" }}

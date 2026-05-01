@@ -1,17 +1,36 @@
 {{/* Expects a Page context. Row-style news entry used by /news/ and home. */}}
 <li class="border-b hairline last:border-0">
-  <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-4 py-5 md:py-6 group items-baseline">
-    <time datetime="{{ .Date.Format "2006-01-02" }}"
-          class="col-span-12 md:col-span-2 font-mono text-[0.78rem] uppercase tracking-[0.1em] text-slate-500">
-      {{ .Date.Format "2006.01.02" }}
-    </time>
-    <h3 class="col-span-12 md:col-span-6 font-display text-xl md:text-2xl leading-snug text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-      {{ .Title }}
-    </h3>
-    {{ with .Params.summary }}
-      <p class="col-span-12 md:col-span-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-        {{ . | truncate 140 }}
-      </p>
+  {{ $img := .Resources.GetMatch "featured.*" }}
+  <a href="{{ .RelPermalink }}" class="grid grid-cols-12 gap-x-4 gap-y-2 py-5 md:py-6 group items-start">
+    {{ if $img }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}"
+            class="col-span-2 mt-2 font-mono text-[0.78rem] uppercase tracking-[0.1em] text-slate-500">
+        {{ .Date.Format "2006.01.02" }}
+      </time>
+      <h3 class="col-span-10 font-display text-xl md:text-2xl leading-snug text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+        {{ .Title }}
+      </h3>
+      <figure class="col-span-2">
+        <img src="{{ $img.RelPermalink }}" alt="" class="w-full aspect-square object-cover rounded-sm">
+      </figure>
+      {{ with .Params.summary }}
+        <p class="col-span-10 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {{ . | truncate 140 }}
+        </p>
+      {{ end }}
+    {{ else }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}"
+            class="col-span-12 md:col-span-2 font-mono text-[0.78rem] uppercase tracking-[0.1em] text-slate-500">
+        {{ .Date.Format "2006.01.02" }}
+      </time>
+      <h3 class="col-span-12 md:col-span-6 font-display text-xl md:text-2xl leading-snug text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+        {{ .Title }}
+      </h3>
+      {{ with .Params.summary }}
+        <p class="col-span-12 md:col-span-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {{ . | truncate 140 }}
+        </p>
+      {{ end }}
     {{ end }}
   </a>
 </li>
