@@ -1,6 +1,6 @@
 baseURL      = "https://ifflab.xyz/"
 languageCode = "en-gb"
-title        = "iFFLab"
+title        = "IFFLab"
 # No `theme` key: all templates live in ./layouts.
 
 enableRobotsTXT = true

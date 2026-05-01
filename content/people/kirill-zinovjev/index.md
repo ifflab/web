@@ -11,7 +11,7 @@ alumnus: false
 draft: false
 ---
 
-Kirill leads the iFFLab. His research focuses on the development of computational 
+Kirill leads the IFFLab. His research focuses on the development of computational 
 methods for studying  complex chemical reactions in the condensed phase - in 
 particular path-optimization and machine-learning embedding schemes for 
 multiscale molecular dynamics simulations.
