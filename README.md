@@ -1,4 +1,4 @@
-# ifflab website
+# IFFLab website
 
 Sources for [ifflab.xyz](https://ifflab.xyz). Built with
 [Hugo](https://gohugo.io) and [Tailwind CSS](https://tailwindcss.com),
