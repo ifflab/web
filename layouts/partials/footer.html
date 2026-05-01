@@ -15,9 +15,6 @@
       {{ with site.Params.social.github }}
         <a href="https://github.com/{{ . }}" class="hover:text-slate-900 dark:hover:text-slate-100">GitHub</a>
       {{ end }}
-      {{ with .OutputFormats.Get "RSS" }}
-        <a href="{{ .Permalink }}" class="hover:text-slate-900 dark:hover:text-slate-100">RSS</a>
-      {{ end }}
     </nav>
   </div>
 </footer>
