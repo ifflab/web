@@ -45,6 +45,11 @@ weight = 50
 description = "Research group at [institution]. We work on [short topic description]."
 email       = "kirill.zinovjev@uv.es"
 
+# OpenStreetMap embed: lat/lon of the marker, label for screen readers.
+mapLat   = 39.50757
+mapLon   = -0.41966
+mapLabel = "Calle Dr. Moliner 50, Burjassot"
+
   [params.social]
   github  = "ifflab"
   # twitter = "ifflab"

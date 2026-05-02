@@ -6,14 +6,21 @@
 
   <div class="grid grid-cols-12 gap-6 items-start">
     <div class="col-span-12 md:col-span-6">
-      {{ $map := resources.Get "images/contact-map.png" }}
-      <a href="https://maps.app.goo.gl/7GW2SHH8dTQc5XRA8"
+      {{ $lat   := site.Params.mapLat   | default 39.5093 }}
+      {{ $lon   := site.Params.mapLon   | default -0.4186 }}
+      {{ $label := site.Params.mapLabel | default "Calle Dr. Moliner 50, Burjassot" }}
+      {{ $dLat  := site.Params.mapZoomLat | default 0.003 }}
+      {{ $dLon  := site.Params.mapZoomLon | default 0.005 }}
+      {{ $bbox  := printf "%v,%v,%v,%v" (sub $lon $dLon) (sub $lat $dLat) (add $lon $dLon) (add $lat $dLat) }}
+      {{ $marker := printf "%v,%v" $lat $lon }}
+      <a href="https://www.openstreetmap.org/?mlat={{ $lat }}&mlon={{ $lon }}#map=18/{{ $lat }}/{{ $lon }}"
          target="_blank" rel="noopener"
-         class="block w-full overflow-hidden rounded-sm border hairline">
-        <img src="{{ $map.RelPermalink }}"
-             alt="Map: Calle Dr. Moliner 50, Burjassot"
-             loading="lazy"
-             class="w-full h-auto block">
+         class="block w-full overflow-hidden rounded-sm border hairline aspect-[4/3]">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox={{ $bbox | urlquery }}&layer=mapnik&marker={{ $marker | urlquery }}"
+          class="w-full h-full block border-0 pointer-events-none"
+          loading="lazy"
+          title="Map: {{ $label }}"></iframe>
       </a>
     </div>
     <div class="col-span-12 md:col-span-6">
