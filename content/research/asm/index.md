@@ -1,6 +1,6 @@
 ---
 title: "Adaptive String Method"
-weight: 10
+index: 3
 summary: "Developing and application of adaptive string method for discovery of complex reaction mechanisms."
 ---
 

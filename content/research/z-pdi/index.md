@@ -1,6 +1,6 @@
 ---
 title: "Conformational equilibrium of perylenediimide aggregates"
-weight: 10
+index: 2
 summary: "Developing a machine-learning-based force field for perylenediimide aggregates to reproduce their conformational equilibrium."
 ---
 

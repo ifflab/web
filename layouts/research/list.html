@@ -5,7 +5,7 @@
   </header>
 
   <ol class="border-t hairline">
-    {{ range .RegularPages.ByWeight }}
+    {{ range .RegularPages.ByParam "index" }}
       <li class="border-b hairline py-8 md:py-10">
         {{ $img := .Resources.GetMatch "featured.*" }}
         <div class="grid grid-cols-12 gap-6 items-start">
