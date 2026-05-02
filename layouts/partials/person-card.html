@@ -12,8 +12,8 @@
         </svg>
       {{ end }}
     </div>
-    <div>
-      <p class="font-display text-base md:text-lg tracking-[-0.01em] text-slate-900 dark:text-slate-100">{{ .Title }}</p>
+    <div class="min-w-0 flex-1">
+      <p class="font-display text-base md:text-lg tracking-[-0.01em] text-slate-900 dark:text-slate-100 break-words">{{ .Title }}</p>
       {{ with .Params.role }}<p class="caption mt-0.5">{{ . }}</p>{{ end }}
       {{ with .Params.email }}<p class="caption mt-0.5"><a href="mailto:{{ . }}" class="text-brand-600 dark:text-brand-400 hover:underline underline-offset-4">{{ . }}</a></p>{{ end }}
     </div>
