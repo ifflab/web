@@ -43,4 +43,5 @@
   venue: "The Journal of Physical Chemistry Letters"
   year: 2025
   doi: "10.1021/acs.jpclett.4c02949"
+  pdf: "https://pubs.acs.org/doi/pdf/10.1021/acs.jpclett.4c02949"
   code: "https://github.com/kzinovjev/emle-qmmmpol"
