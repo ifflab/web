@@ -3,6 +3,13 @@
 # Fields: title (required), authors, venue, year (required),
 # doi, arxiv, pdf, code, url  -- all optional.
 
+- title: "Atomic Environment Aware Lennard-Jones Parameterization for Electrostatic Embedding ML/MM Simulations"
+  authors: "João Morado, Kirill Zinovjev, Lester O. Hedges, Julien Michel, Daniel J. Cole"
+  venue: "ChemRxiv (preprint)"
+  year: 2026
+  doi: "10.26434/chemrxiv.15004404/v1"
+  pdf: "https://chemrxiv.org/doi/pdf/10.26434/chemrxiv.15004404/v1"
+
 - title: "Simulating enzyme catalysis with electrostatically embedded machine learning potentials"
   authors: "Valentin Gradisteanu, Elliot W. Chan, Lester Hedges, Meritxell Malagarriga Perez, Rolf David, Miguel de la Puente, Damien Laage, Iñaki Tuñón, Marc W. van der Kamp, Kirill Zinovjev"
   venue: "Chemical Science"
