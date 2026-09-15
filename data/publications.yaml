@@ -3,6 +3,13 @@
 # Fields: title (required), authors, venue, year (required),
 # doi, arxiv, pdf, code, url  -- all optional.
 
+- title: "Chemical Accuracy for Carbapenem Breakdown by Class A beta-Lactamases Using a Transferable Embedded Machine-Learned Potential"
+  authors: "Elliot W. Chan, Michael Beer, Kirill Zinovjev, James Spencer, Marc W. van der Kamp, Adrian J. Mulholland"
+  venue: "ChemRxiv (preprint)"
+  year: 2026
+  doi: "10.26434/chemrxiv.15008538/v1"
+  pdf: "https://chemrxiv.org/doi/pdf/10.26434/chemrxiv.15008538/v1"
+
 - title: "Atomic Environment Aware Lennard-Jones Parameterization for Electrostatic Embedding ML/MM Simulations"
   authors: "João Morado, Kirill Zinovjev, Lester O. Hedges, Julien Michel, Daniel J. Cole"
   venue: "ChemRxiv (preprint)"
