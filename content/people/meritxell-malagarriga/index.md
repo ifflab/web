@@ -2,12 +2,13 @@
 title: "Meritxell Malagarriga Perez"
 role: "MSc Student"
 photo: "avatar.jpg"
-email: "meritxell.malagarriga.perez@univie.ac.at"
+email: ""
 orcid: ""
 website: ""
 weight: 10
 visitor: false
-alumnus: true
+alumnus: false
+former: true
 draft: false
 ---
 

@@ -2,12 +2,13 @@
 title: "Valentin Gradisteanu"
 role: "MSc Student"
 photo: "avatar.jpg"
-email: "grava@alumni.uv.es"
+email: ""
 orcid: ""
 website: "https://x.com/PDBXtra"
 weight: 20
 visitor: false
-alumnus: true
+alumnus: false
+former: true
 draft: false
 ---
 
