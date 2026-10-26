@@ -13,7 +13,7 @@
     <div class="grid grid-cols-12 gap-6 md:items-baseline-last relative z-10">
       <h1 class="col-span-12 md:col-span-9 md:col-start-1 md:row-start-1 font-display font-normal
                  text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-[-0.025em]
-                 text-slate-900 dark:text-slate-100">
+                 text-slate-900 dark:text-heading-dark">
         {{ replaceRE "\\s+(\\S+)$" "<br>$1" .Title | safeHTML }}
       </h1>
       <div class="col-span-12 md:col-span-9 md:col-start-4 md:row-start-1 md:self-baseline-last mt-3 md:mt-0">
@@ -35,7 +35,7 @@
 <section class="border-t hairline">
   <div class="max-w-[72rem] mx-auto px-6 py-10 md:py-14 grid grid-cols-12 gap-y-6">
     <div class="col-span-12 md:col-span-3">
-      <h2 class="font-display font-normal text-3xl md:text-4xl tracking-tight text-slate-900 dark:text-slate-100">
+      <h2 class="font-display font-normal text-3xl md:text-4xl tracking-tight text-slate-900 dark:text-heading-dark">
         Recent
       </h2>
       <a href="/news/"

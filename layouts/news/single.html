@@ -8,7 +8,7 @@
       </p>
     </div>
     <div class="col-span-12 md:col-span-9">
-      <h1 class="font-display font-normal text-2xl md:text-3xl leading-snug tracking-[-0.02em] text-slate-900 dark:text-slate-100">
+      <h1 class="font-display font-normal text-2xl md:text-3xl leading-snug tracking-[-0.02em] text-slate-900 dark:text-heading-dark">
         {{ .Title }}
       </h1>
       {{ with .Params.summary }}
@@ -46,7 +46,7 @@
       <div class="col-span-12 md:col-span-6">
         {{ with $prev }}
           <p class="text-slate-500 text-[0.72rem] mb-1">← Previous</p>
-          <a href="{{ .RelPermalink }}" class="text-slate-900 dark:text-slate-100 hover:text-brand-600 dark:hover:text-brand-400 normal-case tracking-normal font-display text-base leading-snug">
+          <a href="{{ .RelPermalink }}" class="text-slate-900 dark:text-heading-dark hover:text-brand-600 dark:hover:text-brand-400 normal-case tracking-normal font-display text-base leading-snug">
             {{ .Title }}
           </a>
         {{ end }}
@@ -54,7 +54,7 @@
       <div class="col-span-12 md:col-span-6 md:text-right">
         {{ with $next }}
           <p class="text-slate-500 text-[0.72rem] mb-1">Next →</p>
-          <a href="{{ .RelPermalink }}" class="text-slate-900 dark:text-slate-100 hover:text-brand-600 dark:hover:text-brand-400 normal-case tracking-normal font-display text-base leading-snug">
+          <a href="{{ .RelPermalink }}" class="text-slate-900 dark:text-heading-dark hover:text-brand-600 dark:hover:text-brand-400 normal-case tracking-normal font-display text-base leading-snug">
             {{ .Title }}
           </a>
         {{ end }}

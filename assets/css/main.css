@@ -21,6 +21,7 @@
   --color-paper-dark:    oklch(0.145 0.015 260);
   --color-ink:           oklch(0.20 0.02 260);
   --color-ink-dark:      oklch(0.94 0.008 85);
+  --color-heading-dark:  oklch(0.88 0.04 200);
   --color-ink-muted:     oklch(0.48 0.015 260);
   --color-ink-muted-dark:oklch(0.65 0.015 260);
   --color-hairline:      oklch(0.88 0.008 260);
@@ -84,7 +85,7 @@
     line-height: 1.7;
     color: var(--color-ink);
   }
-  .dark .prose-like { color: var(--color-ink-dark); }
+  .dark .prose-like { color: var(--color-slate-200); }
   .prose-like > :first-child { margin-top: 0; }
 
   .prose-like h2 {
@@ -114,7 +115,7 @@
   .prose-like a:hover { text-decoration-thickness: 2px; }
   .dark .prose-like a { color: var(--color-brand-400); }
   .prose-like strong { font-weight: 600; color: var(--color-ink); }
-  .dark .prose-like strong { color: var(--color-ink-dark); }
+  .dark .prose-like strong { color: var(--color-slate-200); }
   .prose-like ul, .prose-like ol { margin: 1.25rem 0; padding-left: 1.5rem; }
   .prose-like ul { list-style: disc; }
   .prose-like ol { list-style: decimal; }
