@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ .Title }}{{ if not .IsHome }} · {{ site.Title }}{{ end }}</title>
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
   <link rel="icon" href="/logo.svg" type="image/svg+xml">
 
   {{/* Typography: IBM Plex Sans (display), Inter Tight (body), JetBrains Mono (labels). */}}
